@@ -37,8 +37,10 @@ Route::prefix('products')->group(function () {
     Route::post('shelf', [App\Http\Controllers\ProductController::class, 'shelf_save'])->name('products.shelf.save')->middleware('adminRole');
     Route::delete('shelf', [App\Http\Controllers\ProductController::class, 'shelf_delete'])->name('products.shelf.delete')->middleware('adminRole');
     Route::get('barcode/{code}', [App\Http\Controllers\ProductController::class, 'generateBarcode'])->name('products.barcode');
+    Route::get('barcode2/{code}', [App\Http\Controllers\ProductController::class, 'generateBarcode2']);
     Route::post('import', [App\Http\Controllers\ProductController::class, 'product_import'])->name('products.import');
     Route::post('wipImport', [App\Http\Controllers\ProductController::class, 'product_wip_import'])->name('products.wip.import');
+    Route::get('print-product/{pid}', 'ProductController@printProduct');
 });
 
 Route::prefix('users')->group(function () {

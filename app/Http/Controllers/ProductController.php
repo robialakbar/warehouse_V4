@@ -3,17 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Exports\HistoryExport;
-use App\Exports\WIPHistoryExport;
 use App\Exports\ProductsExport;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\View;
-use Illuminate\Support\Facades\DB;
-use DNS1D;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
-use Excel;
+use App\Exports\WIPHistoryExport;
 use App\Imports\ProductsImport;
+use App\Models\Product;
+use DNS1D;
+use Excel;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\View;
 
 class ProductController extends Controller
 {
@@ -1026,5 +1027,38 @@ class ProductController extends Controller
         }
 
         return redirect()->back();
+    }
+
+    public function printProduct(Request $request, $pid)
+    {
+
+    	$data = Product::where('product_id', $pid)->first();
+    	// dd($data);
+    	if($request->ajax()){
+    		$lebar = $request->lebar;
+    		$panjang = $request->panjang;
+    		$jumlah = $request->jumlah;
+			  $barcode = DNS1D::getBarcodePNG("".$data->product_code."", 'C128', 2, 81, array(0,0,0), true);
+    		
+    		return view('	print_barcode_list', compact('lebar','panjang','jumlah','data','barcode'));
+    	}
+    	return view('print_barcode_product', compact('data'));
+    }
+
+    public function generateBarcode2(Request $req){
+        $code       = $req->code;
+        $print      = $req->print;
+        $barcodeB64 = DNS1D::getBarcodePNG("".$code."", 'C128', 1, 30, array(0,0,0), false);
+        
+        if(!empty($print) && $print == true){
+            return View::make("barcode_print")->with("barcode", $barcodeB64);
+        } else {
+            $barcode    = base64_decode($barcodeB64);
+            $image      = imagecreatefromstring($barcode);
+            $barcode    = imagepng($image);
+            imagedestroy($image);
+
+            return response($barcode)->header('Content-type','image/png');
+        }
     }
 }
