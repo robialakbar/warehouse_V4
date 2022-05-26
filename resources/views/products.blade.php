@@ -90,7 +90,7 @@
                                 <td class="text-center">{{ number_format($data['pprice'], 2, ",", ".") }}</td>
                                 <td class="text-center">{{ number_format($data['sprice'], 2, ",", ".") }}</td>
                                 <td class="text-center">
-                                	<a href="{{ action('ProductController@printProduct', $data['pid']) }}">Print</a>
+                                	<a class="btn btn-warning btn-xs" href="{{ action('ProductController@printProduct', $data['pid']) }}"><i class="fas fa-print"></i></a>
                                 	<button title="Edit Produk" type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#add-product" onclick="editProduct({{ json_encode($data) }})"><i class="fas fa-edit"></i></button> 
                                 	<button title="Lihat Barcode" type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#lihat-barcode" onclick="barcode({{ $d->product_code }})"><i class="fas fa-barcode"></i></button> 
 
