@@ -13,7 +13,7 @@
 		justify-content: center;
 		text-align: center;
 		vertical-align: middle;
-		grid-gap: 2mm;
+		/*grid-gap: 2mm;*/
 	}	
 	.label{
 		display: flex;
@@ -44,6 +44,7 @@
 
 	@page {
 		margin: 0;
+		width:  {{ ($lebar * 3) }}mm;
 	}
 </style>
 

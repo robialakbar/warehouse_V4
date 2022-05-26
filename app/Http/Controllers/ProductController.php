@@ -1034,13 +1034,13 @@ class ProductController extends Controller
 
     	$data = Product::where('product_id', $pid)->first();
     	// dd($data);
-    	if($request->ajax()){
+    	if($request->type == 'print-preview'){
     		$lebar = $request->lebar;
     		$panjang = $request->panjang;
     		$jumlah = $request->jumlah;
-			  $barcode = DNS1D::getBarcodePNG("".$data->product_code."", 'C128', 2, 81, array(0,0,0), true);
+			$barcode = DNS1D::getBarcodePNG("".$data->product_code."", 'C128', 2, 81, array(0,0,0), true);
     		
-    		return view('	print_barcode_list', compact('lebar','panjang','jumlah','data','barcode'));
+    		return view('print_barcode_list2', compact('lebar','panjang','jumlah','data','barcode'));
     	}
     	return view('print_barcode_product', compact('data'));
     }

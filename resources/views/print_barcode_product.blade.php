@@ -19,7 +19,7 @@
 				<h4>PRINT BARCODE PRODUCT</h4>
 			</div>
 			<div class="card-body">
-				<form action="" id="form">
+				<form action="{{ url()->full() }}" method="GET" id="form">
 					<div class="form-group row">
 						<label for="inputPassword" class="col-sm-2 col-form-label">Ukuran Per Label</label>
 					</div>	
@@ -40,8 +40,9 @@
 						<div class="col-sm-2">
 							<input type="number" class="form-control" placeholder="Jumlah" name="jumlah" id="jumlah" value="3">
 						</div>
+						<input type="hidden" name="type" value="print-preview">
 						<div class="col-sm-2">
-							<button class="btn btn-success col-12" type="button" id="tampil">Tampilkan</button>
+							<button class="btn btn-success col-12" type="submit" >Tampilkan</button>
 						</div>
 					</div>
 				</form>
