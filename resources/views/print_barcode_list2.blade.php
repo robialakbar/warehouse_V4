@@ -18,12 +18,16 @@
 		.lebar-halaman{
 			display: grid;
 			grid-template-columns: auto auto auto;
-			width: {{  $panjang * 3 }}mm; 
+			width: {{  $panjang * 3 + 12}}mm; 
 			align-items: center;
 			justify-content: center;
 			text-align: center;
 			vertical-align: middle;
-			grid-gap: 2mm;
+/*			margin: 3mm;*/
+			margin-left: -3mm;
+			margin-top: 3mm;
+			grid-gap: 2.5mm;
+			/*border: 1px solid;*/
 		}	
 		.label{
 			display: flex;
@@ -32,14 +36,16 @@
 			flex-direction: column;
 			width: {{ $panjang }}mm;
 			height:  {{ $lebar }}mm;
-			/*border-style: dotted;*/
+			margin-bottom: 3.9mm;
+			margin-top: 1.5mm;
+			/*border: 1px solid;*/
 			/*background-color: rgba(255, 255, 255, 0.8);*/
 			/*border: 1px solid rgba(0, 0, 0, 0.8);*/
 			/*display: flex;*/
 		}
 
 		.nama{
-			font-size: 10px;
+			font-size: 12px;
 		}
 		.kode{
 			font-size: 8px;
@@ -48,12 +54,11 @@
 			font-size: 10px;
 		}
 		.barcode{
-			width: 20mm;
+			width: 40mm;
 		}
 
 		@media print {  
 			@page {
-				size: {{ $panjang * 3 }}mm auto; /* landscape */
 				/* you can also specify margins here: */
 				margin: 0;
 			}
@@ -84,7 +89,7 @@
 		}
 
 		$( document ).ready(function() {
-			window.print();
+			// window.print();
 		});
 	</script>
 

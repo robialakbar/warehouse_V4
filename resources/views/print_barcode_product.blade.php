@@ -26,12 +26,12 @@
 					<div class="form-group row">
 						<label for="inputPassword" class="col-sm-2 col-form-label">Panjang</label>
 						<div class="col-sm-2">
-							<input type="number" class="form-control" placeholder="panjang" name="panjang" id="panjang" value="33">
+							<input type="number" class="form-control" placeholder="panjang" name="panjang" id="panjang" value="50">
 							<small>*mm</small>
 						</div>
 						<label for="inputPassword" class="col-sm-2 col-form-label">Lebar</label>
 						<div class="col-sm-2">
-							<input type="number" class="form-control" placeholder="lebar" name="lebar" id="lebar" value="19">
+							<input type="number" class="form-control" placeholder="lebar" name="lebar" id="lebar" value="23">
 							<small>*mm</small>
 						</div>
 					</div>	
